@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className='app__nav box-shadow'>
         <h1 className='app__nav-heading'>
-            Covid Stats
+            <span>Covid</span> Stats
         </h1>
     </nav>
   )

@@ -12,3 +12,8 @@
     line-height: 1.1em;
     font-family: var(--font-base);
 }
+
+.app__nav-heading span{
+    color: red;
+    font-style: italic;
+}

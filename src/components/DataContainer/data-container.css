@@ -1,0 +1,7 @@
+.app__data-container{
+    position: relative;
+    background: url('../../assets/app-bg.jpg');
+    min-height: 100vh;
+  
+    position: relative;
+}

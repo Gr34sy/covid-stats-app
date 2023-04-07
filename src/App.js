@@ -1,4 +1,5 @@
 import './App.css';
+import DataContainer from './components/DataContainer/DataContainer';
 
 import Navbar from './components/Navbar/Navbar';
 
@@ -6,9 +7,7 @@ function App() {
   return (
     <div className="app">
       <Navbar /> 
-      <div className="app__bg">
-        
-      </div>
+      <DataContainer />
     </div>
   );
 }
