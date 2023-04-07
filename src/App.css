@@ -1,0 +1,7 @@
+.App h1{
+  font-family: var(--font-heading);
+}
+
+.App p{
+  font-family: var(--font-base);
+}
