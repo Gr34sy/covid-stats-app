@@ -2,15 +2,19 @@
     width: 100%;
     background-color: var(--color-white);
 
+    -webkit-box-shadow: 8px 8px 24px 0px var(--color-black);
+  -moz-box-shadow: 8px 8px 24px 0px var(--color-black);
+  box-shadow: 8px 8px 24px 0px var(--color-black);
+
     position: relative;
     z-index: 10;
 }
 
 .app__nav-heading{
     padding: 2rem 4rem;
-    font-size: 2rem;
+    font-size: 3rem;
     line-height: 1.1em;
-    font-family: var(--font-base);
+    font-family: var(--font-heading);
 }
 
 .app__nav-heading span{

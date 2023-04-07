@@ -4,7 +4,7 @@ import './navbar.css'
 
 const Navbar = () => {
   return (
-    <nav className='app__nav box-shadow'>
+    <nav className='app__nav'>
         <h1 className='app__nav-heading'>
             <span>Covid</span> Stats
         </h1>

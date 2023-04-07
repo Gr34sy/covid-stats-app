@@ -1,12 +1,4 @@
 
-.app__bg{
-  position: relative;
-  background: url('./assets/app-bg.jpg');
-  min-height: 100vh;
-
-  position: relative;
-}
-
 .box-shadow{
   -webkit-box-shadow: 8px 8px 24px 0px var(--color-black);
   -moz-box-shadow: 8px 8px 24px 0px var(--color-black);
