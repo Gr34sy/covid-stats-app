@@ -3,5 +3,7 @@
 :root{
   --font-base: 'Merriweather', 'serif';
   --font-heading: 'Alkatra', 'cursive';
-}
 
+  --color-black: #42445A;
+  --color-white: #fff;
+}

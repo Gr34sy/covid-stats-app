@@ -1,10 +1,14 @@
 import './App.css';
 
+import Navbar from './components/Navbar/Navbar';
+
 function App() {
   return (
-    <div className="App">
-        <h1>Covid Stats</h1>
-        <p>Parafsalfkn sakdmjaksdn</p>
+    <div className="app">
+      <Navbar /> 
+      <div className="app__bg">
+        
+      </div>
     </div>
   );
 }
