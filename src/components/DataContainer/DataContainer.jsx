@@ -11,7 +11,7 @@ const DataContainer = () => {
     const [covidGlobal, setCovidGlobal] = useState([]);
     const [inputValues, setInputValues] = useState({
         country: '',
-        select: 'noSort',
+        select: 'alphabetical',
     });
 
 
@@ -25,7 +25,7 @@ const DataContainer = () => {
                 setCovidCountries(data.Countries);
                 setCovidGlobal(data.Global);
                 setAllCountries(data.Countries);
-                console.log(allCountries);
+                console.log(data.Countries);
             })
 
         } catch (err){
@@ -44,9 +44,59 @@ const DataContainer = () => {
         });
     }
 
+    function sortCountries(e){
+        switch(e.target.value){
+            case 'alphabetical':
+                setCovidCountries((prevState) => {
+                    return prevState.sort((a, b) => {
+                        if (a.Country < b.Country) {
+                            return -1;
+                        }
+                        if (a.Country > b.Country) {
+                            return 1;
+                        }
+                        return 0;
+                    })
+                })
+            break;
+
+            case 'totalConfirmed': 
+                setCovidCountries((prevState) => {
+                    return prevState.sort((a, b) => {
+                        return b.TotalConfirmed - a.TotalConfirmed;
+                    })
+                })
+            break;
+
+            case 'totalDeaths': 
+                setCovidCountries((prevState) => {
+                    return prevState.sort((a, b) => {
+                        return b.TotalDeaths - a.TotalDeaths;
+                    })
+                })
+            break;
+
+            case 'newConfirmed': 
+                setCovidCountries((prevState) => {
+                    return prevState.sort((a, b) => {
+                        return b.NewConfirmed - a.NewConfirmed;
+                    })
+                })
+            break;
+
+            case 'newDeaths': 
+                setCovidCountries((prevState) => {
+                    return prevState.sort((a, b) => {
+                        return b.NewDeaths - a.NewDeaths;
+                    })
+                })
+            break;
+        }
+    }
+
     function filterCountries(e){
         if(e.target.value === ''){
-            setCovidCountries(allCountries);
+            setCovidCountries([...allCountries]);
         }
         setCovidCountries(
             allCountries.filter((country) => country.Country.toLowerCase().includes(e.target.value.toLowerCase()))
@@ -102,12 +152,15 @@ const DataContainer = () => {
 
                 <div className="app__data-container_input">
                     <label htmlFor='select'>Sort countries by:</label>
-                    <select value={inputValues.select} name='select' onChange={handleInputChange}>
-                        <option value='noSort'>Choose Option</option>
+                    <select value={inputValues.select} name='select' onChange={(e) => {
+                        handleInputChange(e);
+                        sortCountries(e)}}
+                    >
+                        <option value='alphabetical'>Alphabetical</option>
                         <option value='totalConfirmed'>Total Confirmed</option>
                         <option value='totalDeaths'>Total Deaths</option>
                         <option value='newConfirmed'>New Confirmed</option>
-                        <option value='newlDeaths'>New Deaths</option>
+                        <option value='newDeaths'>New Deaths</option>
                     </select>
                 </div>
 
