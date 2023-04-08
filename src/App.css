@@ -1,6 +1,0 @@
-
-.box-shadow{
-  -webkit-box-shadow: 8px 8px 24px 0px var(--color-black);
-  -moz-box-shadow: 8px 8px 24px 0px var(--color-black);
-  box-shadow: 8px 8px 24px 0px var(--color-black);
-}

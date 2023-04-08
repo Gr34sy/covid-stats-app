@@ -6,9 +6,14 @@
     position: relative;
 }
 
-.app__global-info{
+.app__data-container_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
     padding: 2rem 8rem;
 }
+
 
 .app__global-info_heading{
     font-family: var(--font-heading);
@@ -35,6 +40,14 @@
 
 .app__global-info .app__info-line{
     font-size: 1.5rem;
+}
+
+.app__data-container_input{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .app__countries-info{
@@ -67,4 +80,10 @@
 
 .app__countries-info .app__info-line span {
     width: 150px;
+}
+
+@media screen and (max-width: 1150px){
+    .app__data-container_wrapper{
+       flex-direction: column;
+    }
 }
