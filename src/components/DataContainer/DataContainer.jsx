@@ -135,7 +135,7 @@ const DataContainer = () => {
     );
 
   return (
-    <section className='app__data-container'>
+    <section className='app__data-container' id="data-container">
         <div className="app__data-container_wrapper">
             <GlobalInfo />
             

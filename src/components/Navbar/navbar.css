@@ -6,8 +6,16 @@
   -moz-box-shadow: 8px 8px 24px 0px var(--color-black);
   box-shadow: 8px 8px 24px 0px var(--color-black);
 
-    position: relative;
+    position: fixed;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app__nav a{
+    text-decoration: none;
+    color: var(--color-black);
 }
 
 .app__nav-heading{
@@ -17,7 +25,40 @@
     font-family: var(--font-heading);
 }
 
+
 .app__nav-heading span{
     color: red;
     font-style: italic;
+}
+
+.app__nav-link{
+    font-family: var(--font-base);
+    font-weight: 300;
+    font-size: 1.2rem;
+    padding-inline: 2rem;
+    height: 116px;
+    display: flex;
+    align-items: center;
+}
+
+.app__nav-link:hover{
+    background-color: rgba(155, 146, 146, 0.2);
+}
+
+@media screen and (max-width: 700px){
+    .app__nav{
+        display: block;
+    }
+
+    .app__nav-heading{
+        padding: 1rem 1rem 0 1rem;
+        font-size: 2rem;
+    }
+
+    .app__nav-link{
+        font-size: 1rem;
+        padding: 1rem;
+        width: 100%;
+        height: auto;
+    }
 }
