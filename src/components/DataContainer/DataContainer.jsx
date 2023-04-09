@@ -1,5 +1,7 @@
 import React, { useEffect, useState} from 'react'
 
+import CustomSelect from '../CustomSelect/CustomSelect';
+
 //https://api.covid19api.com/all)
 
 import './data-container.css';
@@ -143,7 +145,7 @@ const DataContainer = () => {
             
                 <div className="app__data-container_input">
                     <label htmlFor='country'>Filter countries by name:</label>
-                    <input type="text" name='country' value={inputValues.country}
+                    <input className="custom__input" type="text" name='country' value={inputValues.country}
                         onChange={ (e) => {
                         handleInputChange(e);
                         filterCountries(e);}}
@@ -152,7 +154,7 @@ const DataContainer = () => {
 
                 <div className="app__data-container_input">
                     <label htmlFor='select'>Sort countries by:</label>
-                    <select value={inputValues.select} name='select' onChange={(e) => {
+                    <select className="custom__input" value={inputValues.select} name='select' onChange={(e) => {
                         handleInputChange(e);
                         sortCountries(e)}}
                     >
@@ -163,6 +165,8 @@ const DataContainer = () => {
                         <option value='newDeaths'>New Deaths</option>
                     </select>
                 </div>
+
+                <CustomSelect/>
 
             </div>
         </div>
