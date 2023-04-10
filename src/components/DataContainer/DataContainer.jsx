@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState, useReducer} from 'react'
 
 import CustomSelect from '../CustomSelect/CustomSelect';
 
@@ -7,14 +7,15 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import './data-container.css';
 
 const DataContainer = () => {
+    const [textInputValue, setTextInputValue] = useState('');
+
     const [allCountries, setAllCountries] = useState([]);
+    const [covidGlobal, setCovidGlobal] = useState([]);
 
     const [covidCountries, setCovidCountries] = useState([]);
-    const [covidGlobal, setCovidGlobal] = useState([]);
-    const [inputValues, setInputValues] = useState({
-        country: '',
-        select: 'alphabetical',
-    });
+
+    const [ignored, forceUpdate] = useReducer(x => x+1, 0);
+    
 
 
     useEffect(() => {
@@ -36,19 +37,15 @@ const DataContainer = () => {
         
     }, []);
 
-    function handleInputChange(e){
+    function handleTextInputChange(e){
         e.preventDefault();
-        setInputValues((prevState) => {
-            return {
-                ...prevState, 
-                [e.target.name]: e.target.value,
-            }
-        });
+        setTextInputValue(e.target.value);
     }
 
-    function sortCountries(e){
-        switch(e.target.value){
-            case 'alphabetical':
+    function sortCountries(value){
+
+        switch(value){
+            case 'Alphabetical':
                 setCovidCountries((prevState) => {
                     return prevState.sort((a, b) => {
                         if (a.Country < b.Country) {
@@ -62,15 +59,15 @@ const DataContainer = () => {
                 })
             break;
 
-            case 'totalConfirmed': 
+            case 'Total Confirmed': 
                 setCovidCountries((prevState) => {
                     return prevState.sort((a, b) => {
                         return b.TotalConfirmed - a.TotalConfirmed;
-                    })
+                    });
                 })
             break;
 
-            case 'totalDeaths': 
+            case 'Total Deaths': 
                 setCovidCountries((prevState) => {
                     return prevState.sort((a, b) => {
                         return b.TotalDeaths - a.TotalDeaths;
@@ -78,7 +75,7 @@ const DataContainer = () => {
                 })
             break;
 
-            case 'newConfirmed': 
+            case 'New Confirmed': 
                 setCovidCountries((prevState) => {
                     return prevState.sort((a, b) => {
                         return b.NewConfirmed - a.NewConfirmed;
@@ -86,7 +83,7 @@ const DataContainer = () => {
                 })
             break;
 
-            case 'newDeaths': 
+            case 'New Deaths': 
                 setCovidCountries((prevState) => {
                     return prevState.sort((a, b) => {
                         return b.NewDeaths - a.NewDeaths;
@@ -94,6 +91,9 @@ const DataContainer = () => {
                 })
             break;
         }
+
+        forceUpdate();
+
     }
 
     function filterCountries(e){
@@ -105,22 +105,10 @@ const DataContainer = () => {
         );
     }
 
-
-    const GlobalInfo = () => (
-        <section className='app__global-info'>
-            <h2 className='app__global-info_heading'>Global Stats</h2>
-            <p className='app__info-line'> <span>Total Confirmed:</span>{covidGlobal.TotalConfirmed} </p>
-            <p className='app__info-line'> <span>Total Deaths:</span>{covidGlobal.TotalDeaths} </p>
-
-            <p className='app__info-line'> <span>New Confirmed:</span>{covidGlobal.NewConfirmed} </p>
-            <p className='app__info-line'> <span>New Deaths:</span>{covidGlobal.NewDeaths} </p>
-        </section>
-    );
-
     const CountriesInfo = () => (
         <section className='app__countries-info'>
             {covidCountries.map((country, i) => (
-                <article className='app__countries-info_country' key={i}>
+                <article className='app__countries-info_country' key={country+i}>
                     <h3 className="app__countries-info_country-heading">
                         {country.Country}
                     </h3>
@@ -139,35 +127,30 @@ const DataContainer = () => {
   return (
     <section className='app__data-container' id="data-container">
         <div className="app__data-container_wrapper">
-            <GlobalInfo />
+            <section className='app__global-info'>
+                <h2 className='app__global-info_heading'>Global Stats</h2>
+
+                <p className='app__info-line'> <span>Total Confirmed:</span>{covidGlobal.TotalConfirmed} </p>
+                <p className='app__info-line'> <span>Total Deaths:</span>{covidGlobal.TotalDeaths} </p>
+                <p className='app__info-line'> <span>New Confirmed:</span>{covidGlobal.NewConfirmed} </p>
+                <p className='app__info-line'> <span>New Deaths:</span>{covidGlobal.NewDeaths} </p>
+            </section>
             
             <div className="app__data-container_inputs">
             
                 <div className="app__input-box">
                     <label htmlFor='country'>Filter countries by name:</label>
-                    <input className="custom__input" type="text" name='country' value={inputValues.country}
+                    <input className="custom__input" type="text" name='country' value={textInputValue}
                         onChange={ (e) => {
-                        handleInputChange(e);
+                        handleTextInputChange(e);
                         filterCountries(e);}}
                     />
                 </div>
 
                 <div className="app__input-box">
                     <label htmlFor='select'>Sort countries:</label>
-                    {/* <select className="custom__input" value={inputValues.select} name='select' onChange={(e) => {
-                        handleInputChange(e);
-                        sortCountries(e)}}
-                    >
-                        <option value='alphabetical'>Alphabetical</option>
-                        <option value='totalConfirmed'>Total Confirmed</option>
-                        <option value='totalDeaths'>Total Deaths</option>
-                        <option value='newConfirmed'>New Confirmed</option>
-                        <option value='newDeaths'>New Deaths</option>
-                    </select> */}
-
-                    <CustomSelect/>
+                    <CustomSelect handleChange={sortCountries} />
                 </div>
-
             </div>
         </div>
 

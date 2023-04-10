@@ -2,8 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 import './custom-select.css';
 
-const CustomSelect = () => {
-    const [selectValue, setSelectValue] = useState('Alphabetical');
+const CustomSelect = ({handleChange}) => {
+  const [selectValue, setSelectValue] = useState('Alphabetical');
+
+  useEffect(() => {
+    if(typeof handleChange === 'function'){
+        handleChange(selectValue);
+    }
+
+  },[selectValue]);
 
   
   function displayOptions(e){
@@ -22,6 +29,7 @@ const CustomSelect = () => {
                 setSelectValue(e.target.dataset.value);
                 document.querySelector('.app__select-options .item.active').classList.remove('active');
                 e.target.classList.add('active');
+                document.querySelector('.app__select-options.active').classList.remove('active');
             }}
         >
             <p className="item active" data-value="Alphabetical">Alphabetical</p>
