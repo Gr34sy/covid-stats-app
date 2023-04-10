@@ -143,7 +143,7 @@ const DataContainer = () => {
             
             <div className="app__data-container_inputs">
             
-                <div className="app__data-container_input">
+                <div className="app__input-box">
                     <label htmlFor='country'>Filter countries by name:</label>
                     <input className="custom__input" type="text" name='country' value={inputValues.country}
                         onChange={ (e) => {
@@ -152,9 +152,9 @@ const DataContainer = () => {
                     />
                 </div>
 
-                <div className="app__data-container_input">
-                    <label htmlFor='select'>Sort countries by:</label>
-                    <select className="custom__input" value={inputValues.select} name='select' onChange={(e) => {
+                <div className="app__input-box">
+                    <label htmlFor='select'>Sort countries:</label>
+                    {/* <select className="custom__input" value={inputValues.select} name='select' onChange={(e) => {
                         handleInputChange(e);
                         sortCountries(e)}}
                     >
@@ -163,10 +163,10 @@ const DataContainer = () => {
                         <option value='totalDeaths'>Total Deaths</option>
                         <option value='newConfirmed'>New Confirmed</option>
                         <option value='newDeaths'>New Deaths</option>
-                    </select>
-                </div>
+                    </select> */}
 
-                <CustomSelect/>
+                    <CustomSelect/>
+                </div>
 
             </div>
         </div>

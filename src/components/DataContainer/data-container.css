@@ -43,16 +43,6 @@
     font-size: 1.5rem;
 }
 
-.app__data-container_input{
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
 .app__countries-info{
     display: flex;
     align-items: center;
@@ -93,11 +83,22 @@
     gap: 20px;
 }
 
-.app__data-container_input{
+.app__input-box{
     font-family: var(--font-base);
     font-weight: 400;
     font-size: 1.5rem;
+    padding: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
+
+
+
 
 @media screen and (max-width: 1150px){
     .app__data-container_wrapper{
@@ -126,7 +127,7 @@
         width: 150px;
     }
 
-    .app__data-container_input{
+    .app__input-box{
         font-size: 1.2rem;
     }
 }
