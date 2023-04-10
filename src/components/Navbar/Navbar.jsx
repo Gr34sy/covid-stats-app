@@ -9,7 +9,7 @@ const Navbar = () => {
         <a href="#data-container"><span>Covid</span> Stats</a>
       </h1>
 
-      <a className='app__nav-link' href="https://heroic-quokka-3e69bf.netlify.app">
+      <a className='app__nav-link' target="_blank" href="https://heroic-quokka-3e69bf.netlify.app">
         Click to find out my other projects
       </a>
     </nav>
